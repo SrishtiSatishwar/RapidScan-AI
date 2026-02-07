@@ -1,3 +1,9 @@
+.env
+.env.local
+.env.production.local
+.env.development.local
+.env.test.local
+
 # Logs
 logs
 *.log
@@ -22,3 +28,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
