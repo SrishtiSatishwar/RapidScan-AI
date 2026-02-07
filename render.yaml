@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: rural-xray-triage-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PORT
+        value: "5001"
