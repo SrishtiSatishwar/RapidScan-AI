@@ -512,6 +512,22 @@ if __name__ == "__main__":
     except Exception as e:
         logger.warning("Model not loaded at startup: %s", e)
     # host='0.0.0.0' allows connections from any IP (teammate on same WiFi, ngrok, Render)
-    port = int(os.environ.get("PORT", 5001))
-    debug = os.environ.get("FLASK_DEBUG", "0") == "1"
-    app.run(host="0.0.0.0", port=port, debug=debug)
+    # port = int(os.environ.get("PORT", 5001))
+    # debug = os.environ.get("FLASK_DEBUG", "0") == "1"
+    # app.run(host="0.0.0.0", port=port, debug=debug)
+    import os
+    
+    # Read from environment or use defaults
+    host = os.getenv('FLASK_HOST', '127.0.0.1')
+    port = int(os.getenv('FLASK_PORT', 5001))
+    debug = os.getenv('FLASK_DEBUG', 'True').lower() == 'true'
+    
+    print("=" * 60)
+    print(f"🚀 VitalTriage Backend Starting")
+    print(f"📍 Server: http://{host}:{port}")
+    print(f"🔧 Debug Mode: {debug}")
+    print(f"🔑 Gemini API Key: {'✓ Set' if os.getenv('GEMINI_API_KEY') else '✗ MISSING'}")
+    print("=" * 60)
+    
+    app.run(host=host, port=port, debug=debug)
+
